@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './Hero.module.css'
+import { showToast } from '../utils/easterEggs'
 
 const rotatingWords = ['Engineering.', 'Products.', 'Experiences.']
 
@@ -43,7 +44,12 @@ export default function Hero() {
       <div className={`${styles.glow} ${styles.glow2}`} />
       <div className={styles.heroLine} />
 
-      <div className={styles.tag}>
+      <div
+        className={styles.tag}
+        style={{ cursor: 'pointer' }}
+        onClick={() => showToast('Hire me already! 😤')}
+        title="Click me 👀"
+      >
         <span className={styles.dot} />
         <span ref={textRef} />
       </div>

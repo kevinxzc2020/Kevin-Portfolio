@@ -53,7 +53,7 @@ export default function Footer() {
 
       <div className={styles.bottom}>
         <span>© {new Date().getFullYear()} Zhichen (Kevin) Xu · All rights reserved.</span>
-        <span className={styles.hint}>💡 Try clicking the logo 5 times</span>
+        <span className={styles.hint}>👾 13 secrets hidden somewhere on this page...</span>
       </div>
     </footer>
   )

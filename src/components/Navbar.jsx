@@ -1,5 +1,9 @@
 import { useEffect, useState, useRef } from 'react'
 import styles from './Navbar.module.css'
+import { spawnConfetti, showToast } from '../utils/easterEggs'
+
+let _themeFlipCount = 0
+let _themeFlipTimer = null
 
 const links = ['About', 'Education', 'Projects', 'Experience', 'Skills', 'Contact']
 
@@ -65,8 +69,8 @@ export default function Navbar() {
     clearTimeout(clickTimer.current)
     if (clickCount.current >= 5) {
       clickCount.current = 0
-      document.body.classList.add('party')
-      setTimeout(() => document.body.classList.remove('party'), 3000)
+      spawnConfetti()
+      showToast('SenYu mode: ON 🏸')
     } else {
       clickTimer.current = setTimeout(() => { clickCount.current = 0 }, 1500)
     }
@@ -93,7 +97,17 @@ export default function Navbar() {
         <div className={styles.right}>
           <button
             className={styles.themeBtn}
-            onClick={() => setDark(d => !d)}
+            onClick={() => {
+              setDark(d => !d)
+              _themeFlipCount++
+              clearTimeout(_themeFlipTimer)
+              if (_themeFlipCount >= 5) {
+                _themeFlipCount = 0
+                showToast('Easy on the eyes! 😵‍💫', 2200)
+              } else {
+                _themeFlipTimer = setTimeout(() => { _themeFlipCount = 0 }, 2000)
+              }
+            }}
             aria-label="Toggle dark mode"
           >
             {dark ? '☀︎' : '☽'}

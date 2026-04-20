@@ -198,26 +198,14 @@ a {
   margin: 0;
 }
 
-/* ─── Easter egg: party mode ─── */
-@keyframes rainbow {
-  0%   { filter: hue-rotate(0deg) saturate(1.5); }
-  100% { filter: hue-rotate(360deg) saturate(1.5); }
+/* ─── Easter egg: hacker mode ─── */
+body.__hacker__ {
+  filter: hue-rotate(100deg) saturate(3) brightness(0.8);
+  transition: filter 0.4s;
 }
-
-body.party .gradient-text {
-  animation: rainbow 0.6s linear infinite !important;
-  background: linear-gradient(135deg, #f43f5e, #f97316, #facc15, #22c55e, #3b82f6, #a855f7) !important;
+body.__hacker__ .gradient-text {
+  background: linear-gradient(135deg, #00ff41, #00cc33) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-  background-size: 200% !important;
-}
-
-body.party {
-  animation: partyBg 0.3s steps(1) infinite;
-}
-
-@keyframes partyBg {
-  0%   { background-color: var(--bg); }
-  50%  { background-color: var(--bg2); }
 }
