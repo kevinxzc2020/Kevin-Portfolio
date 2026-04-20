@@ -117,6 +117,22 @@
   opacity: 0.5;
 }
 
+/* Rotating word animation */
+.rotatingWord {
+  display: inline-block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
 @media (max-width: 768px) {
   .heroLine { display: none; }
 }

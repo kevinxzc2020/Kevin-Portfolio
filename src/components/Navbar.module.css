@@ -23,6 +23,8 @@
   font-weight: 900;
   letter-spacing: -0.5px;
   color: var(--accent1);
+  cursor: pointer;
+  user-select: none;
 }
 
 .links {
@@ -50,8 +52,17 @@
   border-radius: 2px;
 }
 
-.link:hover { color: var(--accent1); }
-.link:hover::after { width: 100%; }
+.link:hover,
+.link.active { color: var(--accent1); }
+.link:hover::after,
+.link.active::after { width: 100%; }
+
+/* Right side controls */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 .themeBtn {
   display: flex;
@@ -75,6 +86,97 @@
   background: rgba(0, 47, 167, 0.06);
 }
 
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 8px;
+  transition: border-color 0.2s;
+}
+
+.hamburger span {
+  display: block;
+  height: 1.5px;
+  background: var(--muted);
+  border-radius: 2px;
+  transition: all 0.25s;
+  transform-origin: center;
+}
+
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 98;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.overlayOpen {
+  opacity: 1;
+}
+
+/* Mobile menu panel */
+.mobileMenu {
+  display: none;
+  position: fixed;
+  top: 0; right: 0;
+  width: 72vw;
+  max-width: 280px;
+  height: 100dvh;
+  background: var(--card);
+  border-left: 1px solid var(--border);
+  z-index: 99;
+  flex-direction: column;
+  padding: 90px 32px 40px;
+  gap: 8px;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobileMenuOpen {
+  transform: translateX(0);
+}
+
+.mobileLink {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+  letter-spacing: 0.2px;
+}
+
+.mobileLink:last-child { border-bottom: none; }
+.mobileLink:hover,
+.mobileLink.mobileLinkActive { color: var(--accent1); }
+
 @media (max-width: 480px) {
   .links { display: none; }
+  .hamburger { display: flex; }
+  .overlay { display: block; pointer-events: none; }
+  .overlayOpen { pointer-events: auto; }
+  .mobileMenu { display: flex; }
 }

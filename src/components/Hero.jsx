@@ -1,9 +1,14 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './Hero.module.css'
+
+const rotatingWords = ['Engineering.', 'Products.', 'Experiences.']
 
 export default function Hero() {
   const textRef = useRef(null)
+  const [wordIdx, setWordIdx] = useState(0)
+  const [fading, setFading] = useState(false)
 
+  // Typewriter for "Available for work" tag
   useEffect(() => {
     const text = 'Available for work'
     const el = textRef.current
@@ -20,6 +25,18 @@ export default function Hero() {
     return () => clearInterval(timer)
   }, [])
 
+  // Rotating words
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFading(true)
+      setTimeout(() => {
+        setWordIdx(i => (i + 1) % rotatingWords.length)
+        setFading(false)
+      }, 350)
+    }, 2800)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section id="hero" className={styles.hero}>
       <div className={`${styles.glow} ${styles.glow1}`} />
@@ -33,7 +50,9 @@ export default function Hero() {
 
       <h1 className={styles.title}>
         Design meets<br />
-        <span className="gradient-text">Engineering.</span>
+        <span className={`gradient-text ${styles.rotatingWord} ${fading ? styles.fadeOut : styles.fadeIn}`}>
+          {rotatingWords[wordIdx]}
+        </span>
       </h1>
 
       <p className={styles.sub}>
