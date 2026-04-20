@@ -16,11 +16,22 @@
   --text: #05080f;
   --muted: #6b7280;
   --radius: 18px;
+  --nav-bg: rgba(255, 255, 255, 0.88);
 
   /* Layout */
   --side-pad: clamp(24px, 7%, 140px);
   --section-v: clamp(32px, 4vw, 52px);
   --max-content: 1200px;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --bg2: #161921;
+  --card: #1a1d27;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #eef2ff;
+  --muted: #8892a4;
+  --nav-bg: rgba(15, 17, 23, 0.88);
 }
 
 html {
