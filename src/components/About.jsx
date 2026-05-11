@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import styles from './About.module.css'
-import { showToast, spawnConfetti, spawnCards, showKillAnnouncement, showWoWAchievement, showDripCheck } from '../utils/easterEggs'
+import { showToast, spawnConfetti, spawnCards, showKillAnnouncement, showWoWAchievement, showDripCheck, showAriesConstellation } from '../utils/easterEggs'
 
 const stats = [
   { num: '3', label: 'Apps Built', emoji: '📱' },
@@ -16,6 +16,7 @@ const hobbies = [
     darkColor: '#14532d33',
     label: 'Badminton',
     sub: 'SenYu founder',
+    duration: 2000,
     onClick: () => {
       if (!document.getElementById('__killStyle__')) {
         const style = document.createElement('style')
@@ -123,6 +124,7 @@ const hobbies = [
     darkColor: '#3b0764aa',
     label: 'League of Legends',
     sub: 'Vayne · ADC',
+    duration: 2500,
     onClick: () => { showKillAnnouncement() },
   },
   {
@@ -131,6 +133,7 @@ const hobbies = [
     darkColor: '#7f1d1d33',
     label: 'Texas Hold\'em',
     sub: 'All in or fold',
+    duration: 3500,
     onClick: () => {
       spawnCards()
       showToast('All in! 🃏 Read \'em and weep.', 2800)
@@ -142,6 +145,7 @@ const hobbies = [
     darkColor: '#78350f33',
     label: 'World of Warcraft',
     sub: 'For the Horde',
+    duration: 3600,
     onClick: () => showWoWAchievement(),
   },
   {
@@ -150,6 +154,7 @@ const hobbies = [
     darkColor: '#0f172a44',
     label: 'Streetwear',
     sub: 'SUP · OW · BAPE',
+    duration: 3300,
     onClick: () => showDripCheck(),
   },
   {
@@ -158,15 +163,17 @@ const hobbies = [
     darkColor: '#83174333',
     label: 'ESFJ',
     sub: 'The Consul',
+    duration: 3000,
     onClick: () => showToast('The Consul 👑  Warm · Social · Dependable', 2800),
   },
   {
     emoji: '♈',
-    color: '#fff1f2',
-    darkColor: '#88002233',
+    color: '#e8eeff',
+    darkColor: '#050c2a88',
     label: 'Aries',
     sub: 'Bold · Fierce · Free',
-    onClick: () => showToast('♈ Fire sign — bold, fierce, unstoppable 🔥', 2800),
+    duration: 5000,
+    onClick: () => showAriesConstellation(),
   },
 ]
 
@@ -180,6 +187,18 @@ export default function About() {
   const clickCount = useRef(0)
   const clickTimer = useRef(null)
   const [spinning, setSpinning] = useState(false)
+  const animating = useRef(false)
+  const animTimer = useRef(null)
+
+  function handleHobbyClick(onClick, duration = 3500) {
+    if (animating.current) return          // another animation is running — ignore
+    animating.current = true
+    clearTimeout(animTimer.current)
+    onClick()
+    animTimer.current = setTimeout(() => {
+      animating.current = false
+    }, duration)
+  }
 
   function handleAvatarClick() {
     clickCount.current += 1
@@ -215,29 +234,32 @@ export default function About() {
             <span className={styles.badgeDot} />
             Open to opportunities
           </div>
+          <p className={styles.caption}>
+            Haven&apos;t had the chance to take a proper headshot yet — coming soon!
+          </p>
         </div>
 
         {/* Text */}
         <div className={`${styles.text} reveal`} style={{ transitionDelay: '0.15s' }}>
           <div className="section-label">About me</div>
           <h2 className={styles.heading}>
-            Mobile Dev. Designer.<br />Problem Solver.
+            Full-Stack Dev.<br />Problem Solver.
           </h2>
           <p className={styles.bio}>
-            I&apos;m <strong>Zhichen (Kevin) Xu</strong> — a mobile &amp; frontend developer
-            based in Orlando, FL. I studied Computer Science and Software Engineering at UCF
-            and specialize in building cross-platform apps with React Native, Flutter, and ReactJS.
+            I&apos;m <strong>Zhichen (Kevin) Xu</strong> — a full-stack developer
+            based in Orlando, FL. I studied Computer Science at UCF and build with
+            the MERN stack: React, Node.js, Express, and MongoDB.
           </p>
           <p className={styles.bio}>
-            From facial recognition login systems to C2C marketplaces, I love turning
-            real problems into polished products. I convert Figma designs into pixel-perfect
-            components and integrate APIs to bring full experiences to life.
+            From facial recognition apps to C2C marketplaces, I like taking a product
+            from idea to something real people can use — working across UI, APIs,
+            database design, and integrations like Stripe and Claude AI.
           </p>
 
           <div className={styles.stats}>
             {stats.map(s => (
               <div key={s.label} className={styles.statCard}>
-                <div className={styles.statNum}>{s.emoji} {s.num}</div>
+                <div className={styles.statNum}>{s.num}</div>
                 <div className={styles.statLabel}>{s.label}</div>
               </div>
             ))}
@@ -250,7 +272,7 @@ export default function About() {
               <button
                 key={h.label}
                 className={styles.hobbyCard}
-                onClick={h.onClick}
+                onClick={() => handleHobbyClick(h.onClick, h.duration)}
                 title="Click me 👀"
               >
                 <span

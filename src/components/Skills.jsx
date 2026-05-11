@@ -47,7 +47,7 @@ export default function Skills() {
             style={{ transitionDelay: `${i * 0.08}s` }}
           >
             <div className={styles.mark}>{g.mark}</div>
-            <div className={styles.title}>{g.emoji} {g.title}</div>
+            <div className={styles.title}>{g.title}</div>
             <div className={styles.pills}>
               {g.pills.map(p => (
                 <span key={p} className={styles.pill}>{p}</span>

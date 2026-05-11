@@ -497,6 +497,164 @@ export function showDripCheck() {
   }, 2800)
 }
 
+// ── Aries constellation ──
+export function showAriesConstellation() {
+  if (document.getElementById('__aries__')) return
+
+  // Inject keyframes once
+  if (!document.getElementById('__ariesKF__')) {
+    const kf = document.createElement('style')
+    kf.id = '__ariesKF__'
+    kf.textContent = `
+      @keyframes __aDrawLine { to { stroke-dashoffset: 0; } }
+      @keyframes __aFlowLine { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+      @keyframes __aLabelIn  { to { opacity: 1; } }
+    `
+    document.body.appendChild(kf)
+  }
+
+  // ── Overlay ──
+  const overlay = document.createElement('div')
+  overlay.id = '__aries__'
+  overlay.style.cssText = `
+    position:fixed;inset:0;z-index:9999;pointer-events:none;
+    opacity:0;transition:opacity 0.5s ease;
+    background:radial-gradient(circle at center, #0b1220 0%, #020617 70%);
+    overflow:hidden;
+  `
+
+  // CSS dot starfield
+  const dotBg = document.createElement('div')
+  dotBg.style.cssText = `
+    position:absolute;inset:0;
+    background-image:
+      radial-gradient(white 1px, transparent 1px),
+      radial-gradient(rgba(255,255,255,.7) 1px, transparent 1px);
+    background-size:140px 140px,220px 220px;
+    background-position:0 0,60px 90px;
+    opacity:.4;
+  `
+  overlay.appendChild(dotBg)
+
+  // ── SVG ──
+  const NS = 'http://www.w3.org/2000/svg'
+  const svg = document.createElementNS(NS, 'svg')
+  svg.setAttribute('viewBox', '0 0 1400 800')
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet')
+  svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;'
+
+  // Gradients
+  const defs = document.createElementNS(NS, 'defs')
+  defs.innerHTML = `
+    <linearGradient id="__aMainGrad__" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="50%"  stop-color="#9ad8ff"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="__aGlowGrad__" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#7fd3ff"/>
+      <stop offset="50%"  stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ffe9a8"/>
+    </linearGradient>
+  `
+  svg.appendChild(defs)
+
+  const PTS = '430,250 760,340 930,430 980,610'
+
+  // Glow line (thick + blurred underlay)
+  const glowLine = document.createElementNS(NS, 'polyline')
+  glowLine.setAttribute('points', PTS)
+  glowLine.setAttribute('fill', 'none')
+  glowLine.setAttribute('stroke', 'url(#__aGlowGrad__)')
+  glowLine.setAttribute('stroke-width', '8')
+  glowLine.setAttribute('stroke-linecap', 'round')
+  glowLine.setAttribute('stroke-dasharray', '1000')
+  glowLine.setAttribute('stroke-dashoffset', '1000')
+  glowLine.style.cssText = 'opacity:.45;filter:blur(4px);animation:__aDrawLine 3s ease forwards;'
+  svg.appendChild(glowLine)
+
+  // Main line
+  const mainLine = document.createElementNS(NS, 'polyline')
+  mainLine.setAttribute('points', PTS)
+  mainLine.setAttribute('fill', 'none')
+  mainLine.setAttribute('stroke', 'url(#__aMainGrad__)')
+  mainLine.setAttribute('stroke-width', '2.2')
+  mainLine.setAttribute('stroke-linecap', 'round')
+  mainLine.setAttribute('stroke-dasharray', '1000')
+  mainLine.setAttribute('stroke-dashoffset', '1000')
+  mainLine.style.cssText = `
+    filter:drop-shadow(0 0 8px rgba(255,255,255,.9)) drop-shadow(0 0 18px rgba(120,180,255,.5));
+    animation:__aDrawLine 3s ease forwards;
+  `
+  svg.appendChild(mainLine)
+
+  // Energy flow dot
+  const energyLine = document.createElementNS(NS, 'polyline')
+  energyLine.setAttribute('points', PTS)
+  energyLine.setAttribute('fill', 'none')
+  energyLine.setAttribute('stroke', 'white')
+  energyLine.setAttribute('stroke-width', '1.2')
+  energyLine.setAttribute('stroke-linecap', 'round')
+  energyLine.setAttribute('stroke-dasharray', '100 900')
+  energyLine.style.cssText = 'opacity:.9;animation:__aFlowLine 4s linear infinite;'
+  svg.appendChild(energyLine)
+
+  // Star aura rings
+  ;[
+    { cx: 430, cy: 250, r: 28 },
+    { cx: 760, cy: 340, r: 40 },
+    { cx: 930, cy: 430, r: 24 },
+    { cx: 980, cy: 610, r: 45 },
+  ].forEach(a => {
+    const c = document.createElementNS(NS, 'circle')
+    c.setAttribute('cx', a.cx); c.setAttribute('cy', a.cy); c.setAttribute('r', a.r)
+    c.setAttribute('fill', 'none')
+    c.setAttribute('stroke', 'rgba(255,255,255,.35)')
+    c.setAttribute('stroke-width', '2')
+    c.style.filter = 'blur(1px)'
+    svg.appendChild(c)
+  })
+
+  // 5-pointed star polygons
+  ;[
+    '430,236 435,247 447,249 438,257 441,269 430,262 419,269 422,257 413,249 425,247',
+    '760,310 770,331 793,334 776,350 781,373 760,361 739,373 744,350 727,334 750,331',
+    '930,417 936,428 948,430 939,438 942,450 930,444 918,450 921,438 912,430 924,428',
+    '980,575 992,602 1020,605 998,625 1005,652 980,638 955,652 962,625 940,605 968,602',
+  ].forEach(pts => {
+    const poly = document.createElementNS(NS, 'polygon')
+    poly.setAttribute('points', pts)
+    poly.setAttribute('fill', 'white')
+    poly.style.filter = 'drop-shadow(0 0 10px white) drop-shadow(0 0 25px rgba(255,255,255,.9))'
+    svg.appendChild(poly)
+  })
+
+  overlay.appendChild(svg)
+
+  // ARIES label
+  const label = document.createElement('div')
+  label.textContent = 'ARIES'
+  label.style.cssText = `
+    position:absolute;bottom:70px;left:0;right:0;
+    text-align:center;color:white;
+    font-size:28px;letter-spacing:12px;font-weight:200;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    text-shadow:0 0 10px rgba(255,255,255,.8),0 0 20px rgba(120,180,255,.4);
+    opacity:0;animation:__aLabelIn 2s ease 2.5s forwards;
+  `
+  overlay.appendChild(label)
+
+  document.body.appendChild(overlay)
+  requestAnimationFrame(() => { overlay.style.opacity = '1' })
+
+  // ── Fade out after 4.2 s ──
+  setTimeout(() => {
+    overlay.style.transition = 'opacity 0.8s ease'
+    overlay.style.opacity = '0'
+    setTimeout(() => overlay.remove(), 900)
+  }, 4200)
+}
+
 // ── Tab visibility: title flips when you switch away ──
 let _origTitle = ''
 let _tabAttached = false
