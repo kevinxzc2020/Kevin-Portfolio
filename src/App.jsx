@@ -7,6 +7,7 @@ import Education from './components/Education'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
+import Services from './components/Services'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -48,6 +49,7 @@ function App() {
         <About />
         <Education />
         <Projects />
+        <Services />
         <Experience />
         <Skills />
         <Contact />

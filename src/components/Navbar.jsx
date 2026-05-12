@@ -5,7 +5,7 @@ import { spawnConfetti, showToast } from '../utils/easterEggs'
 let _themeFlipCount = 0
 let _themeFlipTimer = null
 
-const links = ['About', 'Education', 'Projects', 'Experience', 'Skills', 'Contact']
+const links = ['About', 'Education', 'Projects', 'Services', 'Experience', 'Skills', 'Contact']
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
