@@ -12,6 +12,7 @@ const jobs = [
       'Manage and maintain the ERP system to ensure data integrity and operational accuracy across departments.',
       'Support leadership with technical documentation, system updates, and internal reporting.',
       'Coordinate inventory records and provide on-call technical support for daily pharmaceutical operations.',
+      'Designed and built the company\'s business website on Shopify from scratch — facility overview, services, customization offerings, and contact page. Handled layout, design, and Liquid template development end-to-end. Live at 3h.life.',
     ],
   },
   {
