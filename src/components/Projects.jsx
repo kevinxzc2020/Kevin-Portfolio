@@ -1,5 +1,16 @@
 import styles from './Projects.module.css'
 
+const professional = {
+  num: '★',
+  tags: ['Shopify', 'Liquid', 'HTML5', 'CSS3', 'JavaScript'],
+  title: '3H Pharmaceuticals Corporate Website',
+  role: 'Developer · 3H Pharmaceuticals · May 2026 – Present',
+  award: 'Live in Production',
+  desc: 'Built and shipped 3H Pharmaceuticals’ corporate website on Shopify — owned by the company; I served as the developer. Migrated their legacy Wix site to a fully custom Shopify storefront in roughly one week. Self-designed the page layouts and hand-wrote every Liquid template from scratch, with no third-party themes or apps installed.',
+  website: 'https://3h.life',
+  github: null,
+}
+
 const featured = {
   tags: ['React 19', 'Node.js / Express 5', 'MongoDB', 'Stripe', 'Socket.IO', 'Claude AI', 'Cloudinary'],
   title: 'SenYu',
@@ -54,7 +65,8 @@ export default function Projects() {
         <div className="section-label">What I&apos;ve shipped</div>
         <h2 className="section-title">Projects</h2>
         <p className="section-desc">
-          One real product I&apos;m building end-to-end, and two team projects from UCF.
+          One independent product I&apos;m building end-to-end, one production site I shipped for my employer,
+          and team projects from UCF.
         </p>
       </div>
 
@@ -101,8 +113,37 @@ export default function Projects() {
         <div className={styles.featuredDeco2} />
       </div>
 
+      {/* ── Professional / Client Work ── */}
+      <div className={`${styles.academicLabel} reveal`} style={{ transitionDelay: '0.12s' }}>
+        Professional Work
+      </div>
+      <div className={styles.grid} style={{ gridTemplateColumns: '1fr', marginBottom: '40px' }}>
+        <div
+          className={`${styles.card} reveal`}
+          style={{ transitionDelay: '0.15s' }}
+        >
+          <div className={styles.cardTop}>
+            <span className={styles.num}>{professional.num}</span>
+            <div className={styles.cardTags}>
+              {professional.tags.map(t => (
+                <span key={t} className="tag">{t}</span>
+              ))}
+            </div>
+          </div>
+          <h3 className={styles.cardTitle}>{professional.title}</h3>
+          {professional.award && (
+            <span className={styles.award}>✦ {professional.award}</span>
+          )}
+          <p className={styles.cardRole}>{professional.role}</p>
+          <p className={styles.cardDesc}>{professional.desc}</p>
+          <a href={professional.website} target="_blank" rel="noreferrer" className={styles.cardLink}>
+            Visit Site →
+          </a>
+        </div>
+      </div>
+
       {/* ── Academic Projects ── */}
-      <div className={`${styles.academicLabel} reveal`} style={{ transitionDelay: '0.15s' }}>
+      <div className={`${styles.academicLabel} reveal`} style={{ transitionDelay: '0.18s' }}>
         University Projects
       </div>
       <div className={styles.grid}>

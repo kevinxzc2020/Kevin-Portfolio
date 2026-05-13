@@ -17,56 +17,16 @@ const schools = [
     note: 'Transfer pathway to UCF',
     tier: 'college',
   },
-  {
-    name: 'Maynard Evans High School',
-    location: 'Pine Hills, Orlando, FL',
-    period: '— 2015',
-    detail: 'High School Diploma',
-    note: null,
-    tier: 'school',
-  },
-  {
-    name: 'Meadowbrook Middle School',
-    location: 'Pine Hills, Orlando, FL',
-    period: '8th Grade',
-    detail: null,
-    note: null,
-    tier: 'school',
-  },
-  {
-    name: 'IS 237',
-    location: 'Flushing, Queens, NYC',
-    period: '7th Grade',
-    detail: null,
-    note: 'First school in the U.S.',
-    tier: 'school',
-  },
-  {
-    name: '徐汇区教师进修学院附属实验中学',
-    location: 'Xuhui District, Shanghai',
-    period: 'Up to 6th Grade',
-    detail: 'Xuhui District Teachers\' College Affiliated Experimental Middle School',
-    note: 'Left for America after this',
-    tier: 'china',
-  },
-  {
-    name: '上海小学',
-    location: 'Xuhui District, Shanghai',
-    period: 'Primary Years',
-    detail: 'Shanghai Primary School',
-    note: 'Born and raised in Shanghai',
-    tier: 'china',
-  },
 ]
 
 export default function Education() {
   return (
     <section id="education" className={styles.section}>
       <div className={`${styles.header} reveal`}>
-        <div className="section-label">The journey</div>
+        <div className="section-label">Academic background</div>
         <h2 className="section-title">Education</h2>
         <p className="section-desc">
-          From Shanghai to New York City to Orlando — every school that shaped how I think and build.
+          Computer Science at UCF, after transferring from Valencia College in Orlando.
         </p>
       </div>
 
