@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { attachKonami, triggerHackerMode, attachTabEgg, attachHireEgg, attachIdleEgg } from './utils/easterEggs'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -14,14 +13,6 @@ import ScrollToTop from './components/ScrollToTop'
 import CursorGlow from './components/CursorGlow'
 
 function App() {
-  // Easter eggs
-  useEffect(() => {
-    attachKonami(triggerHackerMode)
-    attachTabEgg()
-    attachHireEgg()
-    attachIdleEgg()
-  }, [])
-
   // Scroll reveal
   useEffect(() => {
     const els = document.querySelectorAll('.reveal')

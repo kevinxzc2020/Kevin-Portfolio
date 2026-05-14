@@ -17,70 +17,14 @@ const jobs = [
   },
   {
     role: 'Certified Tutor',
-    company: 'Orange County Public Schools (OCPS)',
+    company: 'Freedom High School (OCPS)',
     location: 'Orlando, FL',
     period: '2023 — 2024',
     type: 'Part-time',
     current: false,
     bullets: [
-      'Provided targeted instructional support and facilitated learning sessions for students across the district.',
+      'Provided targeted instructional support and facilitated learning sessions for students at Freedom High School.',
       'Collaborated with educators to deliver curriculum-aligned academic assistance.',
-    ],
-  },
-  {
-    role: 'Front of House',
-    company: 'Purple Ocean Superfood Bar',
-    location: 'Orlando, FL',
-    period: '2022 — 2023',
-    type: 'Part-time',
-    current: false,
-    bullets: [
-      'Managed front-of-house operations including customer service, order flow, and team coordination.',
-    ],
-  },
-  {
-    role: 'Front Desk',
-    company: 'Hunan Taste (湘之味)',
-    location: 'Orlando, FL',
-    period: '2021 — 2022',
-    type: 'Part-time',
-    current: false,
-    bullets: [
-      'Handled front desk operations, customer reception, and coordination between kitchen and dining floor.',
-    ],
-  },
-  {
-    role: 'Front Desk & Server',
-    company: 'China Hut — College Park',
-    location: 'Orlando, FL',
-    period: '2019 — 2021',
-    type: 'Part-time',
-    current: false,
-    bullets: [
-      'Managed front desk and served customers across a busy dining environment.',
-      'Balanced multiple responsibilities during rush hours while maintaining quality of service.',
-    ],
-  },
-  {
-    role: 'Front Desk (Computer & Admin)',
-    company: 'Local Barbershop',
-    location: 'Orlando, FL',
-    period: '2018 · 1 month',
-    type: 'Short-term',
-    current: false,
-    bullets: [
-      'Managed front desk reception and handled computer file organization and administrative tasks.',
-    ],
-  },
-  {
-    role: 'Cashier',
-    company: '1st Oriental Supermarket',
-    location: 'Orlando, FL',
-    period: '2015 — 2018',
-    type: 'Part-time',
-    current: false,
-    bullets: [
-      'Operated checkout and handled customer transactions throughout college years at Valencia.',
     ],
   },
 ]
@@ -92,8 +36,7 @@ export default function Experience() {
         <div className="section-label">Where I&apos;ve worked</div>
         <h2 className="section-title">Experience</h2>
         <p className="section-desc">
-          Every job since 2015 — from the register to the ERP system.
-          Each one taught me something different about how people and systems work.
+          Work since graduating from UCF Computer Science in 2022.
         </p>
       </div>
 

@@ -1,20 +1,11 @@
-import { useRef } from 'react'
 import styles from './Hero.module.css'
-import { showToast } from '../utils/easterEggs'
 
 export default function Hero() {
-  const tagRef = useRef(null)
-
   return (
     <section id="hero" className={styles.hero}>
 
-      {/* Status tag — Easter egg intact */}
-      <div
-        className={styles.tag}
-        style={{ cursor: 'pointer' }}
-        onClick={() => showToast('Hire me already! 😤')}
-        title="Click me 👀"
-      >
+      {/* Status tag */}
+      <div className={styles.tag}>
         <span className={styles.dot} />
         Open to work
       </div>

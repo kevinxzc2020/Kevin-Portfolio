@@ -1,9 +1,5 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Navbar.module.css'
-import { spawnConfetti, showToast } from '../utils/easterEggs'
-
-let _themeFlipCount = 0
-let _themeFlipTimer = null
 
 const links = ['About', 'Education', 'Projects', 'Services', 'Experience', 'Skills', 'Contact']
 
@@ -11,8 +7,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState('')
-  const clickCount = useRef(0)
-  const clickTimer = useRef(null)
 
   const [dark, setDark] = useState(() => {
     if (typeof window === 'undefined') return false
@@ -63,23 +57,10 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  // Easter egg: click logo 5 times
-  function handleLogoClick() {
-    clickCount.current += 1
-    clearTimeout(clickTimer.current)
-    if (clickCount.current >= 5) {
-      clickCount.current = 0
-      spawnConfetti()
-      showToast('SenYu mode: ON 🏸')
-    } else {
-      clickTimer.current = setTimeout(() => { clickCount.current = 0 }, 1500)
-    }
-  }
-
   return (
     <>
       <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
-        <a href="#hero" className={styles.logo} onClick={handleLogoClick}>Kevin.</a>
+        <a href="#hero" className={styles.logo}>Kevin.</a>
 
         <ul className={styles.links}>
           {links.map(l => (
@@ -97,17 +78,7 @@ export default function Navbar() {
         <div className={styles.right}>
           <button
             className={styles.themeBtn}
-            onClick={() => {
-              setDark(d => !d)
-              _themeFlipCount++
-              clearTimeout(_themeFlipTimer)
-              if (_themeFlipCount >= 5) {
-                _themeFlipCount = 0
-                showToast('Easy on the eyes! 😵‍💫', 2200)
-              } else {
-                _themeFlipTimer = setTimeout(() => { _themeFlipCount = 0 }, 2000)
-              }
-            }}
+            onClick={() => setDark(d => !d)}
             aria-label="Toggle dark mode"
           >
             {dark ? '☀︎' : '☽'}

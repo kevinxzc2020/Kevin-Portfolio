@@ -6,7 +6,7 @@ const professional = {
   title: '3H Pharmaceuticals Corporate Website',
   role: 'Developer · 3H Pharmaceuticals · May 2026 – Present',
   award: 'Live in Production',
-  desc: 'Built and shipped 3H Pharmaceuticals’ corporate website on Shopify — owned by the company; I served as the developer. Migrated their legacy Wix site to a fully custom Shopify storefront in roughly one week. Self-designed the page layouts and hand-wrote every Liquid template from scratch, with no third-party themes or apps installed.',
+  desc: 'Built and shipped 3H Pharmaceuticals’ corporate website on Shopify — owned by the company; I served as the developer. Migrated their legacy Wix site to a fully custom Shopify storefront in roughly one week. Self-designed every page layout and shipped fully custom Liquid templates, with no third-party themes or apps installed.',
   website: 'https://3h.life',
   github: null,
 }
@@ -16,7 +16,7 @@ const featured = {
   title: 'SenYu',
   subtitle: 'Peer-to-Peer Badminton Racket Marketplace',
   role: 'Full-stack solo project · 2025–2026 · Production',
-  desc: 'Built the first US-focused C2C marketplace for secondhand badminton rackets — designed and shipped solo, from database schema to payment infrastructure to admin tooling. The core challenge was modeling three fundamentally different trade flows (self-arranged, Stripe-managed, and physically inspected by the platform) inside one codebase, with correct payout logic under every edge case.',
+  desc: 'A US-focused C2C marketplace for secondhand badminton rackets — designed and shipped solo, from database schema to payment infrastructure to admin tooling. The core challenge was modeling three fundamentally different trade flows (self-arranged, Stripe-managed, and physically inspected by the platform) inside one codebase, with correct payout logic under every edge case.',
   highlights: [
     'Three trade modes each with their own order states and confirmation rules — orders auto-confirm after a timer with no background jobs, checked lazily when the API reads the order',
     'Four Stripe checkout paths: single item, cart, offer-based, and VIP subscription — VIP sellers receive a 50% platform fee rebate computed server-side at webhook time; platform fee is never set by the frontend',
@@ -53,7 +53,7 @@ const academic = [
     title: 'Contact Management App',
     role: 'Front End Developer · UCF Team Project · Jan–Mar 2022',
     award: null,
-    desc: 'Simple web app for managing contacts — built with plain HTML, CSS, and JavaScript. Included form validation and connected to a backend API provided by the team for data storage.',
+    desc: 'Simple web app for managing contacts — built with plain HTML, CSS, and JavaScript. Implemented client-side form validation in JS; forms submitted to a team-built backend API via HTML form actions.',
     github: 'https://github.com/MatthewMcK17/COP4331C-SmallProject',
   },
 ]
